@@ -28,6 +28,39 @@ Important Firebase requirements:
 
 Firebase manages the browser session, restores it on refresh, and clears access on sign-out.
 
+## Deploying With Amplify
+
+This repo is ready to deploy as an Amplify Hosting frontend.
+
+1. Connect the repository in AWS Amplify Hosting
+2. Keep the repository root as the app root
+3. Amplify will use the checked-in `amplify.yml` build spec
+4. Set these Amplify environment variables in the app settings:
+   `VITE_FIREBASE_API_KEY`
+   `VITE_FIREBASE_AUTH_DOMAIN`
+   `VITE_FIREBASE_PROJECT_ID`
+   `VITE_FIREBASE_STORAGE_BUCKET`
+   `VITE_FIREBASE_MESSAGING_SENDER_ID`
+   `VITE_FIREBASE_APP_ID`
+   `VITE_GOOGLE_CLIENT_ID`
+5. Optionally set:
+   `VITE_FIREBASE_MEASUREMENT_ID`
+   `VITE_COMPANY_BRIEF_ENDPOINT`
+
+Amplify-specific notes:
+
+- The build uses Node `22` and `pnpm`
+- Amplify should deploy the generated `dist` folder
+- `.env` files are ignored by git; use Amplify environment variables instead of committing secrets
+- After deployment, add the Amplify domain or custom domain to:
+  Firebase Authentication authorized domains
+  Google OAuth authorized JavaScript origins
+
+For Google sign-in in production, the deployed origin must be registered in Google Cloud, for example:
+
+- `https://main.<app-id>.amplifyapp.com`
+- your custom production domain, if you add one
+
 ## What is included
 
 - Calendar-style upcoming meetings sidebar with 5 seeded meetings
