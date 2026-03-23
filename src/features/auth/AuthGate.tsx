@@ -36,7 +36,6 @@ declare global {
             callback: (response: GoogleTokenResponse) => void
             client_id: string
             error_callback?: (error: { message?: string; type: string }) => void
-            hd?: string
             prompt?: string
             scope: string
           }) => GoogleTokenClient
@@ -150,7 +149,6 @@ export function AuthGate() {
         },
         client_id: googleClientId,
         error_callback: handleGooglePopupError,
-        hd: 'defft.ai',
         prompt: 'select_account',
         scope: 'openid email profile https://www.googleapis.com/auth/calendar.readonly',
       })
@@ -249,7 +247,8 @@ export function AuthGate() {
           <p className="section-kicker">Secure access</p>
           <h1>Sign in to Meeting Prep Tool</h1>
           <p className="auth-copy">
-            Sign in with your Defft email or continue with Google to access the workspace.
+            Sign in with your Defft email or choose a Google account. Access is limited to
+            @defft.ai users.
           </p>
         </div>
 

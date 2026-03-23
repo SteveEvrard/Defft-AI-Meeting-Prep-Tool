@@ -145,11 +145,13 @@ const ensureAllowedDomain = async (user: User) => {
     return
   }
 
+  clearGoogleAccessToken()
+
   if (auth) {
     await firebaseSignOut(auth)
   }
 
-  throw new Error(`Use your @${ALLOWED_EMAIL_DOMAIN} email address to sign in.`)
+  throw new Error(`Sign in with a valid @${ALLOWED_EMAIL_DOMAIN} Google account.`)
 }
 
 const buildSession = async (user: User): Promise<AuthSession> => {
